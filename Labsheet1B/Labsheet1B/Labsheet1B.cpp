@@ -28,16 +28,23 @@ int main()
 	personPtr->printName();
 
 	//Create Employee then call printName method
-	Employee cleo = Employee("cleo", 5000);
+	Employee moneybags = Employee("moneybags", 5);
 	cout << "\n";
-	p1 = &cleo;
+	p1 = &moneybags;
+
+	Customer bigCustomer = Customer("bigSpender");
+	cout << "\n";
+	p2 = &bigCustomer;
 
 	personPtr->printName();
+	cout << "\n";
+
 	p1->printName();
 	//Grand final
 	vector<Person*> personVector;
 	personVector.push_back(personPtr);
 	personVector.push_back(p1);
+	personVector.push_back(p2);
 	cout << "\n";
 
 	//Initially tried using normal vector sort, but due to it using pointers this is not readable. to do this access the readers as followed:
@@ -56,7 +63,7 @@ int main()
 	std::sort(personVector.begin(), personVector.end(), SortPersonsNames());
 
 	for (const auto* p : personVector)
-		std::cout << *p;
+		std::cout << *p << " ";
 
 
 
