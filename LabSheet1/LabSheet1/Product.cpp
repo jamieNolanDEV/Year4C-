@@ -16,6 +16,6 @@ double Product::getGrossPrice()
 {
 	double total = 0;
 	double VAT = 0.21;
-	total = netPrice + (netPrice * 0.21);
+	total = netPrice + (netPrice * VAT);
 	return total;
 }
