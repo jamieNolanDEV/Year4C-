@@ -1,70 +1,55 @@
-// Labsheet1B.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// X00128813 - VAT using vectors
 
-#include <iostream>
-#include "Customer.h"
-#include "Employee.h"
-#include "Person.h"
-#include <string>
-#include <vector>
+#include "iostream"
+#include "Product.h"
+#include "Software.h"
+#include "Book.h"
+#include <vector> 
 #include <algorithm>
-
-using namespace std;
 int main()
-
 {
-	const int NUM_PERSONS = 3;
-	//pointer to class Person
-	string names[NUM_PERSONS];
 
-	Person* personPtr;
-	Person* p1;
-	Person* p2;
 
-	//Create Person then call printName method
-	Person jamie = Person("jamie");
+	vector<Product*> products(8);
+	double bookPrice;
+	double softwarePrice;
+
+	cout << "Test : Enter Software Price - VAT 21%";
 	cout << "\n";
-	personPtr = &jamie;
-	personPtr->printName();
-
-	//Create Employee then call printName method
-	Employee moneybags = Employee("moneybags", 5);
+	cin >> softwarePrice;
+	cout << "Test : Enter Book Price -NO VAT";
 	cout << "\n";
-	p1 = &moneybags;
+	cin >> bookPrice;
 
-	Customer bigCustomer = Customer("bigSpender");
+	Book* book = new Book(bookPrice);
+	Software* software = new Software(softwarePrice);
+
+	cout << "Book Price without VAT" << " " << book->getGrossPrice();
 	cout << "\n";
-	p2 = &bigCustomer;
-
-	personPtr->printName();
+	cout << "Software Price without VAT" << " " << software->getGrossPrice();
 	cout << "\n";
+	double price = 0;
+	cout << "Enter 6 More objects";
+	for (int i = 0; i < 6; i++) {
+		products.push_back(book);
+		products.push_back(software);
+		cin >> price;
+		products[i] = new Software(price);
+		products[i] = new Book(price);
+	}
 
-	p1->printName();
-	//Grand final
-	vector<Person*> personVector;
-	personVector.push_back(personPtr);
-	personVector.push_back(p1);
-	personVector.push_back(p2);
-	cout << "\n";
-
-	//Initially tried using normal vector sort, but due to it using pointers this is not readable. to do this access the readers as followed:
-//https://stackoverflow.com/questions/34757448/sorting-a-vector-of-objects-alphabetically-in-c
-	struct SortPersonsNames
-	{
-		// overload the function call operator
-		bool operator()(const Person* lhs, const Person* rhs) const
-		{
-			// dereference the pointers to persons their targets
-			// using the persons class's operator<(...) function
-			return *lhs < *rhs;
-		}
-	};
-
-	std::sort(personVector.begin(), personVector.end(), SortPersonsNames());
-
-	for (const auto* p : personVector)
-		std::cout << *p << " ";
+	for (int i = 0; i < 6; i++) {
+		cout << products[i]->getGrossPrice();
+	}
 
 
+	//Sort vector using std sort
+	std::sort(products.begin(), products.end());
 
+	cout << "Vector Sorted" << "\n";
+	//auto, used in Cpp refrence page for source
+	for (auto x : products) {
+		cout << x->getGrossPrice() << "\n";
+	}
 }
+
