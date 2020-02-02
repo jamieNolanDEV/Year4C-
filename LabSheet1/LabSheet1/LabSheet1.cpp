@@ -10,7 +10,7 @@ int main()
 {
 
 
-	vector<Product*> products(8);
+	vector<Product*> products;
 	double bookPrice;
 	double softwarePrice;
 
@@ -31,12 +31,34 @@ int main()
 	double price = 0;
 	cout << "Enter 6 More objects";
 	for (int i = 0; i < 6; i++) {
+		char selection;
 		products.push_back(book);
 		products.push_back(software);
-		cin >> price;
-		products[i] = new Software(price);
-		products[i] = new Book(price);
+
+		cout << "Choose Book or Software";
+		cin >> selection;
+		if (selection == 'B') {
+			double bPrice;
+			cout << "Book Price";
+			cin >> bPrice;
+			Book* book = new Book(bPrice);
+			products[i] = book;
+		}
+		else if (selection == 'S') {
+			double sPrice;
+			cout << "Software Price";
+			cin >> sPrice;
+			Software* software = new Software(sPrice);
+			products[i] = software;
+		}
+		else {
+			if (selection != 'A' || 'B') {
+				cout << "Please Eneter the correct one";
+			}
+		}
+		
 	}
+	
 
 	for (int i = 0; i < 6; i++) {
 		cout << products[i]->getGrossPrice();
