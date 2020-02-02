@@ -35,6 +35,7 @@ int main()
 	Customer bigCustomer = Customer("bigSpender");
 	cout << "\n";
 	p2 = &bigCustomer;
+	p2->printName();
 
 	personPtr->printName();
 	cout << "\n";
