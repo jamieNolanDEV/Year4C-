@@ -9,6 +9,7 @@ class BinaryTree {
 public:
 	BinaryTree();
 	void preOrderTraversal();
+	void sortAscending();
 	void add(char toadd);
 	int height();
 	void searchChar(char val);
@@ -19,4 +20,6 @@ private:
 	void add(TreeNode* toAdd, TreeNode*& addHere);
 	int height(TreeNode*& root);
 	bool searchChar(TreeNode* toSearch, char key);
+	void sortAscending(TreeNode* root);
+
 };

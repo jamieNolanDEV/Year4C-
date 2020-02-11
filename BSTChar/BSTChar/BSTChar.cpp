@@ -15,11 +15,11 @@ int main() {
 	BST->add(a);
 	BST->add(a);
 	BST->add(a);
-	bigTree.add(a);
-	bigTree.add(b);
-	bigTree.add(c);
-	bigTree.add(d);
 	bigTree.add(e);
+	bigTree.add(c);
+	bigTree.add(b);
+	bigTree.add(d);
+	bigTree.add(a);
 
 
 	cout << "Tree height should be: 3" << "\n";
@@ -41,5 +41,15 @@ int main() {
 	cout << "Searching for char z - Should not be found" << "\n";
 	cout << "\n";
 	bigTree.searchChar('z');
+	cout << "\n";
+	cout << "Printing the tree as is without sorting" << "\n";
+	cout << "\n";
+	bigTree.preOrderTraversal();
+	cout << "\n";
 
+
+	cout << "Printing the tree with sorting" << "\n";
+	cout << "\n";
+
+	bigTree.sortAscending();
 }

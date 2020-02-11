@@ -2,6 +2,7 @@
 
 
 
+
 TreeNode::TreeNode(char thedata) : data(thedata)
 {
 }
